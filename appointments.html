@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Bites and Basics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background: #fff;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2d6a4f;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #2d6a4f;
+        }
+
+        /* Header Section */
+        .page-header {
+            background: linear-gradient(135deg, #52b788 0%, #2d6a4f 100%);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+        }
+
+        /* Info Section */
+        .info-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .info-section h2 {
+            color: #2d6a4f;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .info-section h3 {
+            color: #2d6a4f;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .info-item h4 {
+            color: #2d6a4f;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #52b788;
+            font-size: 1.1rem;
+        }
+
+        /* Booking Form */
+        .booking-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .booking-form h2 {
+            color: #2d6a4f;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #52b788;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .required {
+            color: #e63946;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #52b788 0%, #2d6a4f 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .form-note {
+            background: #e8f5e9;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            color: #2d6a4f;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1b4332;
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Bites & Basics</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="appointment.html">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Book Your Appointment</h1>
+        <p>Take the first step toward better health</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Info Section -->
+        <aside class="info-section">
+            <h2>What to Expect</h2>
+            
+            <div class="info-item">
+                <h4>Initial Consultation (60 min)</h4>
+                <p>Comprehensive nutrition assessment, health history review, and personalized goal setting.</p>
+                <p class="price">$150</p>
+            </div>
+
+            <div class="info-item">
+                <h4>Follow-up Session (30 min)</h4>
+                <p>Progress review, meal plan adjustments, and ongoing support.</p>
+                <p class="price">$75</p>
+            </div>
+
+            <div class="info-item">
+                <h4>Package Deal (4 sessions)</h4>
+                <p>One initial consultation plus three follow-ups. Save $25!</p>
+                <p class="price">$350</p>
+            </div>
+
+            <h3>Before Your Appointment</h3>
+            <p style="color: #666; line-height: 1.8;">Please complete a food diary for 3 days prior to your initial consultation. We'll send you a detailed intake form once your appointment is confirmed.</p>
+
+            <h3>Cancellation Policy</h3>
+            <p style="color: #666; line-height: 1.8;">Please provide at least 24 hours notice for cancellations. Late cancellations may be subject to a fee.</p>
+        </aside>
+
+        <!-- Booking Form -->
+        <section class="booking-form">
+            <h2>Request an Appointment</h2>
+            
+            <div class="form-note">
+                <strong>Note:</strong> This form is a request. We'll contact you within 24 hours to confirm your appointment time.
+            </div>
+
+            <form id="appointmentForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="serviceType">Service Type <span class="required">*</span></label>
+                    <select id="serviceType" name="serviceType" required>
+                        <option value="">Select a service</option>
+                        <option value="initial">Initial Consultation (60 min) - €150</option>
+                        <option value="followup">Follow-up Session (30 min) - €75</option>
+                        <option value="package">Package Deal (4 sessions) - €350</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="focusArea">Primary Area of Focus <span class="required">*</span></label>
+                    <select id="focusArea" name="focusArea" required>
+                        <option value="">Select focus area</option>
+                        <option value="weight">Weight Management</option>
+                        <option value="disease">Chronic Disease Management</option>
+                        <option value="sports">Sports Nutrition</option>
+                        <option value="family">Family Nutrition</option>
+                        <option value="general">General Wellness</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date <span class="required">*</span></label>
+                        <input type="date" id="preferredDate" name="preferredDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferredTime">Preferred Time <span class="required">*</span></label>
+                        <select id="preferredTime" name="preferredTime" required>
+                            <option value="">Select time</option>
+                            <option value="morning">Morning (8am - 12pm)</option>
+                            <option value="afternoon">Afternoon (12pm - 4pm)</option>
+                            <option value="evening">Evening (4pm - 7pm)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="consultationType">Consultation Type <span class="required">*</span></label>
+                    <select id="consultationType" name="consultationType" required>
+                        <option value="">Select type</option>
+                        <option value="virtual">Virtual (Video Call)</option>
+                        <option value="inperson">In-Person</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Additional Information</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your goals, dietary restrictions, or any questions you have..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Request Appointment</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Bites & Basics. All rights reserved.</p>
+        <p>Professional Nutrition Counseling Services</p>
+    </footer>
+
+    <script>
+        // Set minimum date to today
+        const dateInput = document.getElementById('preferredDate');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // Form submission handler
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            // For now, we'll just show a confirmation message
+            alert('Thank you for your appointment request! We will contact you within 24 hours to confirm your booking.');
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
